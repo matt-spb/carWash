@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ohy-cn-GJw">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Мормойка-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CarwashVC" customModule="Carwash" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qQ6-B7-a31">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qQ6-B7-a31" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0LU-B2-3yC"/>
+                            <constraint firstItem="qQ6-B7-a31" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ETq-H3-7fw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qQ6-B7-a31" secondAttribute="trailing" id="nsf-CK-dEi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qQ6-B7-a31" secondAttribute="bottom" id="uI8-xy-klR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Мормойка" id="PLH-m3-IMk"/>
+                    <connections>
+                        <outlet property="carwashTable" destination="qQ6-B7-a31" id="wwj-AX-Fgj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="109.82142857142857"/>
+        </scene>
+        <!--Car DetailVC-->
+        <scene sceneID="ZaV-IP-gad">
+            <objects>
+                <viewController storyboardIdentifier="CarDetailVC" id="Nf5-yr-T4t" customClass="CarDetailVC" customModule="Carwash" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bL3-sg-pHf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zh1-qO-teJ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Zh1-qO-teJ" firstAttribute="leading" secondItem="mHA-J3-ZTH" secondAttribute="leading" id="YPK-k0-GKc"/>
+                            <constraint firstItem="mHA-J3-ZTH" firstAttribute="trailing" secondItem="Zh1-qO-teJ" secondAttribute="trailing" id="ZnD-FQ-kRj"/>
+                            <constraint firstItem="Zh1-qO-teJ" firstAttribute="top" secondItem="mHA-J3-ZTH" secondAttribute="top" id="alA-KU-zTS"/>
+                            <constraint firstItem="mHA-J3-ZTH" firstAttribute="bottom" secondItem="Zh1-qO-teJ" secondAttribute="bottom" id="iCU-I1-GDL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mHA-J3-ZTH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="72e-7V-oMp"/>
+                    <connections>
+                        <outlet property="carDataTable" destination="Zh1-qO-teJ" id="WkY-cP-fS4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bni-Lw-gvs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1828" y="110"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LgW-Qe-aGt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ohy-cn-GJw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cks-kQ-tfW">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="9SD-nF-v5l"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AKT-Dh-eNM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </scene>
+    </scenes>
+</document>
