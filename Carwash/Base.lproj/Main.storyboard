@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ohy-cn-GJw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ohy-cn-GJw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,11 +43,11 @@
             <objects>
                 <viewController storyboardIdentifier="CarDetailVC" id="Nf5-yr-T4t" customClass="CarDetailVC" customModule="Carwash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bL3-sg-pHf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zh1-qO-teJ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -55,19 +55,21 @@
                         <constraints>
                             <constraint firstItem="Zh1-qO-teJ" firstAttribute="leading" secondItem="mHA-J3-ZTH" secondAttribute="leading" id="YPK-k0-GKc"/>
                             <constraint firstItem="mHA-J3-ZTH" firstAttribute="trailing" secondItem="Zh1-qO-teJ" secondAttribute="trailing" id="ZnD-FQ-kRj"/>
-                            <constraint firstItem="Zh1-qO-teJ" firstAttribute="top" secondItem="mHA-J3-ZTH" secondAttribute="top" id="alA-KU-zTS"/>
                             <constraint firstItem="mHA-J3-ZTH" firstAttribute="bottom" secondItem="Zh1-qO-teJ" secondAttribute="bottom" id="iCU-I1-GDL"/>
+                            <constraint firstItem="Zh1-qO-teJ" firstAttribute="top" secondItem="mHA-J3-ZTH" secondAttribute="top" id="zwM-Ek-kDB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mHA-J3-ZTH"/>
                     </view>
-                    <navigationItem key="navigationItem" id="72e-7V-oMp"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="carDataTable" destination="Zh1-qO-teJ" id="WkY-cP-fS4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bni-Lw-gvs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828" y="110"/>
+            <point key="canvasLocation" x="1827.5362318840582" y="109.82142857142857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LgW-Qe-aGt">

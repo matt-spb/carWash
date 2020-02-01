@@ -19,8 +19,6 @@ class BoxCell: UITableViewCell {
     
     func updateCell(box: Box) {
         title.text = box.title
-        carAmount.text = box.carAmount
+        carAmount.text = "\(box.cars.count) машин"
     }
-
-    
 }

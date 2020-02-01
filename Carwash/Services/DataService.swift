@@ -13,21 +13,58 @@ class DataService {
     lazy private var boxes = generateBoxes()
     lazy private var comments = generateComments()
 
+    //MARK: Generating Cars
+    // база брендов
+    private let carBrands = ["BMW 525", "LEXUS IS250", "MERCEDES G500", "МОСКВИЧ 412", "ЛАДА Седан", "MAZDA CX7", "HONDA CRV", "AUDI A6", "TOYOTA RAV4", "DODGE", "SKODA SUPERB", "BMV X6", "LAND CRUISER", "JAGUAR", "BENTLY", "MAZERATI", "FERRARI F50", "PORSCHE 911", "LADA 2113", "HODA CIVIC", "MERCEDES E200", "UAZ PATRIOT", "RENO LAGUNA", "HYUNDAI SANTAFE"]
     
-    // Генератор боксов
+    private func generateCars() -> [Car] {
+        var cars = [Car]()
+        let randomNumberOfCars = Int.random(in: 1...15)
+        for _ in 0...randomNumberOfCars {
+            let brand = carBrands[Int.random(in: 0..<carBrands.count)]
+            let date = generateDate()
+            let car = Car(brand: brand, dateOfWash: date)
+            cars.append(car)
+        }
+        return cars.sorted { (carA, carB) in
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            
+            return formatter.date(from: carA.dateOfWash)! > formatter.date(from: carB.dateOfWash)!
+        }
+    }
+    
+    //MARK: Generating dates for car
+    private func generateDate() -> String {
+        
+        let now = Date() // дата сейчас
+        let randomDayInterval = Int.random(in: 1...365) * 86400
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        
+        // вычитаем рандомное количество дней
+        let randomDate = now.addingTimeInterval(TimeInterval(-randomDayInterval))
+        
+        // переводим дату в строку
+        let stringRandomDate = formatter.string(from: randomDate)
+        
+        return stringRandomDate
+    }
+    
+   
+    //MARK: Generating Boxes
     private func generateBoxes() -> [Box] {
         var boxes = [Box]()
         let number = Int.random(in: 1...10)
         for num in 0...number {
-            let cars = Int.random(in: 1...15)
-            let box = Box(title: "Бокс \(num + 1)", carAmount: "\(cars) машин")
+            let cars = generateCars()
+            let box = Box(title: "Бокс \(num + 1)", cars: cars)
             boxes.append(box)
         }
         return boxes
     }
 
-    
-    // генератор коментов
+   // MARK: - Generating Comments
     private let names = [
         "Василиса Сергеевна",
         "Марк Безруков",
@@ -62,26 +99,7 @@ class DataService {
         return comments
     }
     
-    // генерим нужное количество дат по количеству тачек в боксе
-    func generateDates(forCars cars: Int) -> [String] {
-        var randomDates = [String]()
-        for _ in 1...cars {
-            let now = Date() // дата сейчас
-            let randomDayInterval = Int.random(in: 1...365) * 86400
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            
-            // вычитаем рандомное количество дней
-            let randomDate = now.addingTimeInterval(TimeInterval(-randomDayInterval))
-            
-            // переводим дату в строку
-            let stringRandomDate = formatter.string(from: randomDate)
-            
-            randomDates.append(stringRandomDate)
-        }
-        return randomDates
-    }
-    
+    //MARK: Get functions
     
     func getBoxes() -> [Box] {
         return boxes
@@ -89,5 +107,17 @@ class DataService {
     
     func getComments() -> [Comment] {
         return comments
+    }
+    
+    //MARK: Removing car from box
+    
+    func removeCarFrom(box: Int, at index: Int) {
+        boxes[box].removeCar(atIndex: index)
+    }
+    
+    //MARK: Adding car to box
+    
+    func addCar(car: Car, toBox box: Int) {
+        boxes[box].addCar(car: car)
     }
 }

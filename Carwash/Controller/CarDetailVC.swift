@@ -10,7 +10,7 @@ import UIKit
 
 class CarDetailVC: UIViewController {
         
-    var boxNumber: Int?  // будем передавать сюда номер бокса, чтобы получать для него даты из журнала
+    var boxNumber: Int?
     
     @IBOutlet weak var carDataTable: UITableView!
 
@@ -20,13 +20,56 @@ class CarDetailVC: UIViewController {
         carDataTable.dataSource = self
         carDataTable.tableFooterView = UIView()
         setupNibs()
+                
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCarToJournal))
+
+        navigationItem.title = "Журнал"
+        navigationItem.backBarButtonItem?.title = ""
+    }
+    
+    
+    @objc func addCarToJournal() {
+
+        print("Add is pressed")
+        let alert = UIAlertController(title: "Add car", message: nil, preferredStyle: .alert)
         
+        alert.addTextField { (textField: UITextField) in
+            textField.placeholder = "Enter a car"
+        }
+        
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (UIAlertAction) in
+            guard let brandNewCar = alert.textFields?.first?.text else { return } //as UITextField
+        
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            let dateNewCar = formatter.string(from: Date())
+            
+            let newCar = Car(brand: brandNewCar, dateOfWash: dateNewCar)
+            DataService.shared.addCar(car: newCar, toBox: self.boxNumber!)
+            self.carDataTable.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
+extension CarDetailVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //textField.resignFirstResponder()
+        view.endEditing(true)
+    }
+}
+
+
 extension CarDetailVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DateStorage.shared.getWashDatesForBox(box: boxNumber!).count
+        return DataService.shared.getBoxes()[boxNumber!].cars.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -36,31 +79,20 @@ extension CarDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = carDataTable.dequeueReusableCell(withIdentifier: "CarCell", for: indexPath) as! CarCell
         
-        // получаем с сервера словарь [машина: дата] для данного бокса
-        let washDatesJournal = DateStorage.shared.getWashDatesForBox(box: boxNumber!)
-
-        // создаем объект [CarData], чтобы отправить ячейке для обновления
-        let carTitle = "Тачка \(indexPath.row + 1)"
-        if let carDate = washDatesJournal[carTitle] {
-            let carData = CarData(carTitle: carTitle, carDate: carDate)
-            cell.updateCell(carData: carData)
-        }
-
+        let car = DataService.shared.getBoxes()[boxNumber!].cars[indexPath.row]
+        cell.updateCell(car: car)
         return cell
     }
+        
     
-    
-    // чтобы сделать нормальное удаление, нужно кол-во машин хранить в Инте отдельным лейблом. А не в строке как сейчас
-    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//
-//            //DataService.shared.removeCarAt(index: indexPath.row)
-//            let carToDalete = "Тачка \(indexPath.row + 1)"
-//            DateStorage.shared.deleteDateAt(box: boxNumber!, forCar: carToDalete)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            DataService.shared.removeCarFrom(box: boxNumber!, at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 
 extension CarDetailVC {

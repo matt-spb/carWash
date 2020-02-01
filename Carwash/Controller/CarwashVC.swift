@@ -22,6 +22,10 @@ class CarwashVC: UIViewController {
         let headerView = HeaderView(frame: rect)
         carwashTable.tableHeaderView = headerView
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        carwashTable.reloadData()
+    }
 }
 
 extension CarwashVC: UITableViewDataSource, UITableViewDelegate {
@@ -66,7 +70,6 @@ extension CarwashVC: UITableViewDataSource, UITableViewDelegate {
             return "Отзывы"
         default:
             return ""
-            
         }
     }
     
@@ -81,24 +84,12 @@ extension CarwashVC: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
             guard let carDetailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CarDetailVC") as? CarDetailVC else { return }
-            
-            // получаем строку с количестовм машин в боксе
-            let stringCarNumber = DataService.shared.getBoxes()[indexPath.row].carAmount
-            
-            // находим индекс первого пробела
-            let firstSpace = stringCarNumber.firstIndex(of: " ") ?? stringCarNumber.startIndex
-            
-            // пробуем перевести часть строки до пробела в Int
-            guard let numberOfCars = Int(stringCarNumber[..<firstSpace]) else { return }
-            
             carDetailVC.boxNumber = indexPath.row
-            
-            // заполняем журнал помытых машин
-            DateStorage.shared.fillDatesForBox(box: indexPath.row, andCars: numberOfCars)
             
             navigationController?.pushViewController(carDetailVC, animated: true)
             

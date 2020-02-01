@@ -12,14 +12,13 @@ class CarCell: UITableViewCell {
 
     @IBOutlet weak var carTitle: UILabel!
     @IBOutlet weak var dataLabel: UILabel!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
 
-    func updateCell(carData: CarData) {
-        self.carTitle.text = carData.carTitle
-        self.dataLabel.text = carData.carDate
+    func updateCell(car: Car) {
+        self.carTitle.text = car.brand
+        self.dataLabel.text = car.dateOfWash
     }
 }

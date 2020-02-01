@@ -21,5 +21,4 @@ class CommentCell: UITableViewCell {
         nameLabel.text = comment.name
         commentLabel.text = comment.text
     }
-    
 }

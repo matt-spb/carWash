@@ -14,7 +14,7 @@
 		FAE0DE1123D802F40026DAAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE0DE0F23D802F40026DAAF /* Main.storyboard */; };
 		FAE0DE1323D802F50026DAAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE0DE1223D802F50026DAAF /* Assets.xcassets */; };
 		FAE0DE1623D802F50026DAAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE0DE1423D802F50026DAAF /* LaunchScreen.storyboard */; };
-		FAE0DE2223D8C8F20026DAAF /* Boxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE2123D8C8F20026DAAF /* Boxes.swift */; };
+		FAE0DE2223D8C8F20026DAAF /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE2123D8C8F20026DAAF /* Box.swift */; };
 		FAE0DE2523D8C9810026DAAF /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE2423D8C9810026DAAF /* DataService.swift */; };
 		FAE0DE2823D8D58A0026DAAF /* BoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE2623D8D58A0026DAAF /* BoxCell.swift */; };
 		FAE0DE2923D8D58A0026DAAF /* BoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAE0DE2723D8D58A0026DAAF /* BoxCell.xib */; };
@@ -24,8 +24,6 @@
 		FAE0DE3123DB812E0026DAAF /* CarDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE3023DB812E0026DAAF /* CarDetailVC.swift */; };
 		FAE0DE3423DB81960026DAAF /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE3223DB81960026DAAF /* CarCell.swift */; };
 		FAE0DE3523DB81960026DAAF /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAE0DE3323DB81960026DAAF /* CarCell.xib */; };
-		FAE0DE3723DB833E0026DAAF /* CarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE3623DB833E0026DAAF /* CarData.swift */; };
-		FAE0DE5C23DC9C090026DAAF /* DateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE5B23DC9C090026DAAF /* DateStorage.swift */; };
 		FAE0DE6023DCDE460026DAAF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE0DE5F23DCDE460026DAAF /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +37,7 @@
 		FAE0DE1223D802F50026DAAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAE0DE1523D802F50026DAAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAE0DE1723D802F50026DAAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAE0DE2123D8C8F20026DAAF /* Boxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boxes.swift; sourceTree = "<group>"; };
+		FAE0DE2123D8C8F20026DAAF /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		FAE0DE2423D8C9810026DAAF /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		FAE0DE2623D8D58A0026DAAF /* BoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxCell.swift; sourceTree = "<group>"; };
 		FAE0DE2723D8D58A0026DAAF /* BoxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoxCell.xib; sourceTree = "<group>"; };
@@ -49,8 +47,6 @@
 		FAE0DE3023DB812E0026DAAF /* CarDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailVC.swift; sourceTree = "<group>"; };
 		FAE0DE3223DB81960026DAAF /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		FAE0DE3323DB81960026DAAF /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
-		FAE0DE3623DB833E0026DAAF /* CarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarData.swift; sourceTree = "<group>"; };
-		FAE0DE5B23DC9C090026DAAF /* DateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStorage.swift; sourceTree = "<group>"; };
 		FAE0DE5F23DCDE460026DAAF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,10 +120,9 @@
 		FAE0DE2023D8C86B0026DAAF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FAE0DE2123D8C8F20026DAAF /* Boxes.swift */,
-				FAE0DE2A23DA317D0026DAAF /* Comments.swift */,
-				FAE0DE3623DB833E0026DAAF /* CarData.swift */,
+				FAE0DE2123D8C8F20026DAAF /* Box.swift */,
 				FA77871D23DDEBFA00348A30 /* Car.swift */,
+				FAE0DE2A23DA317D0026DAAF /* Comments.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				FAE0DE2423D8C9810026DAAF /* DataService.swift */,
-				FAE0DE5B23DC9C090026DAAF /* DateStorage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -217,13 +211,11 @@
 			files = (
 				FAE0DE0E23D802F40026DAAF /* CarwashVC.swift in Sources */,
 				FAE0DE0A23D802F40026DAAF /* AppDelegate.swift in Sources */,
-				FAE0DE3723DB833E0026DAAF /* CarData.swift in Sources */,
 				FAE0DE3123DB812E0026DAAF /* CarDetailVC.swift in Sources */,
 				FAE0DE0C23D802F40026DAAF /* SceneDelegate.swift in Sources */,
 				FAE0DE2B23DA317D0026DAAF /* Comments.swift in Sources */,
 				FAE0DE2823D8D58A0026DAAF /* BoxCell.swift in Sources */,
-				FAE0DE5C23DC9C090026DAAF /* DateStorage.swift in Sources */,
-				FAE0DE2223D8C8F20026DAAF /* Boxes.swift in Sources */,
+				FAE0DE2223D8C8F20026DAAF /* Box.swift in Sources */,
 				FAE0DE2523D8C9810026DAAF /* DataService.swift in Sources */,
 				FAE0DE3423DB81960026DAAF /* CarCell.swift in Sources */,
 				FAE0DE2E23DA374A0026DAAF /* CommentCell.swift in Sources */,
