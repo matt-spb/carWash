@@ -46,8 +46,8 @@
             filePath = "Carwash/Controller/CarDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
             landmarkName = "CarDetailVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -62,25 +62,25 @@
             filePath = "Carwash/Controller/CarDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "tableView(_:commit:forRowAt:)"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0BCE29E7-5D63-4CF6-9E5B-652B298EE2AF"
+            uuid = "32A5CE67-31D0-4D7C-BBD1-004BD29D9B91"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Carwash/Controller/CarDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "deleteCars()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,29 +8,58 @@
 
 import UIKit
 
+// отрефакторить код, вынести в отдельную функцию настройку кнопки добавить и редактировать
+
 class CarDetailVC: UIViewController {
         
     var boxNumber: Int?
     
     @IBOutlet weak var carDataTable: UITableView!
 
+    // сделаьть AddButton неактивной когда нажата кнопка эдит, а делит подсветить только когда есть выделенная тачка
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         carDataTable.delegate = self
         carDataTable.dataSource = self
         carDataTable.tableFooterView = UIView()
         setupNibs()
-                
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCarToJournal))
+                        
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCarToJournal))
+        
+        //let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(startEditing))
+        
+        let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteCars))
+        
+        navigationItem.rightBarButtonItems = [addButton, editButtonItem, deleteButton]
 
-        navigationItem.title = "Журнал"
-        navigationItem.backBarButtonItem?.title = ""
+        //navigationItem.title = "Журнал"
+        //navigationItem.backBarButtonItem?.title = ""
+        carDataTable.allowsMultipleSelectionDuringEditing = true
+    }
+    
+    @objc func deleteCars() {
+        if let selectedRows = carDataTable.indexPathsForSelectedRows {
+
+            var carsToDelete = [Int]()
+            for indexPath in selectedRows {
+                carsToDelete.append(indexPath.row)
+            }
+
+            for index in carsToDelete {
+                DataService.shared.removeCarFrom(box: boxNumber!, at: index)
+            }
+            
+            carDataTable.beginUpdates()
+            carDataTable.deleteRows(at: selectedRows, with: .fade)
+            carDataTable.endUpdates()
+        }
     }
     
     
     @objc func addCarToJournal() {
 
-        print("Add is pressed")
         let alert = UIAlertController(title: "Add car", message: nil, preferredStyle: .alert)
         
         alert.addTextField { (textField: UITextField) in
@@ -53,18 +82,6 @@ class CarDetailVC: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
-
-extension CarDetailVC: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.becomeFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //textField.resignFirstResponder()
-        view.endEditing(true)
-    }
-}
-
 
 extension CarDetailVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -92,6 +109,21 @@ extension CarDetailVC: UITableViewDelegate, UITableViewDataSource {
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    // разрешает подсвечивать ряды
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    // разрешает редактировать ряды
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        carDataTable.setEditing(editing, animated: true)
     }
 }
 
