@@ -11,9 +11,4 @@ import Foundation
 struct Comment {
     private(set) var name: String
     private(set) var text: String
-    
-//    init(name: String, text: String) {
-//        self.name = name
-//        self.text = text
-//    }
 }

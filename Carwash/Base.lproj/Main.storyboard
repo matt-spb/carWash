@@ -29,7 +29,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Мормойка" id="PLH-m3-IMk"/>
+                    <navigationItem key="navigationItem" title="Мормойка" id="PLH-m3-IMk">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="ZzX-Fm-OjD"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="carwashTable" destination="qQ6-B7-a31" id="wwj-AX-Fgj"/>
                     </connections>

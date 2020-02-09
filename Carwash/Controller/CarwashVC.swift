@@ -21,6 +21,10 @@ class CarwashVC: UIViewController {
         let rect = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
         let headerView = HeaderView(frame: rect)
         carwashTable.tableHeaderView = headerView
+        
+        //navigationItem.backBarButtonItem?.title = "Back"
+        navigationItem.hidesBackButton = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

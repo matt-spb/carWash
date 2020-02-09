@@ -12,5 +12,3 @@ struct Car {
     private(set) var brand: String
     private(set) var dateOfWash: String
 }
-
-// или каждая модель должна сама себя генерировать?

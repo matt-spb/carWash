@@ -11,7 +11,7 @@ import Foundation
 struct Box {
     private(set) var title: String
     private(set) var cars: [Car]
-    
+        
     mutating func removeCar(atIndex index: Int) {
         cars.remove(at: index)
     }

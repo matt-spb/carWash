@@ -15,8 +15,6 @@ class CarDetailVC: UIViewController {
     var boxNumber: Int?
     
     @IBOutlet weak var carDataTable: UITableView!
-
-    // сделаьть AddButton неактивной когда нажата кнопка эдит, а делит подсветить только когда есть выделенная тачка
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +22,20 @@ class CarDetailVC: UIViewController {
         carDataTable.dataSource = self
         carDataTable.tableFooterView = UIView()
         setupNibs()
-                        
-        
+        configureNavButtons()
+
+        carDataTable.allowsMultipleSelectionDuringEditing = true
+    }
+    
+    fileprivate func configureNavButtons() {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCarToJournal))
-        
-        //let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(startEditing))
         
         let deleteButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteCars))
         
+        deleteButton.isEnabled = false
+        deleteButton.tintColor = .clear
+        
         navigationItem.rightBarButtonItems = [addButton, editButtonItem, deleteButton]
-
-        //navigationItem.title = "Журнал"
-        //navigationItem.backBarButtonItem?.title = ""
-        carDataTable.allowsMultipleSelectionDuringEditing = true
     }
     
     @objc func deleteCars() {
@@ -47,13 +46,16 @@ class CarDetailVC: UIViewController {
                 carsToDelete.append(indexPath.row)
             }
 
-            for index in carsToDelete {
+            // делаем сортировку в обратном направлении, чтобы начать удаление с максимального индекса, иначе можно нарваться на удаление по уже несуществующему индексу по причине сдвижки индексов к нулю после удаления элемента
+            
+            for index in carsToDelete.sorted().reversed() {
                 DataService.shared.removeCarFrom(box: boxNumber!, at: index)
             }
             
             carDataTable.beginUpdates()
             carDataTable.deleteRows(at: selectedRows, with: .fade)
             carDataTable.endUpdates()
+            isEditing = false
         }
     }
     
@@ -77,11 +79,13 @@ class CarDetailVC: UIViewController {
             DataService.shared.addCar(car: newCar, toBox: self.boxNumber!)
             self.carDataTable.reloadData()
         }))
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
     }
 }
+
 
 extension CarDetailVC: UITableViewDelegate, UITableViewDataSource {
     
@@ -121,9 +125,20 @@ extension CarDetailVC: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
+    //включаем режим редактирования по нажатию Edit
     override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        carDataTable.setEditing(editing, animated: true)
+        if editing {
+            super.setEditing(true, animated: true)
+            carDataTable.setEditing(true, animated: true)
+            navigationItem.rightBarButtonItems?[2].isEnabled = true
+            navigationItem.rightBarButtonItems?[2].tintColor = .systemBlue
+        } else {
+            super.setEditing(false, animated: false)
+            carDataTable.setEditing(false, animated: true)
+            navigationItem.rightBarButtonItems?[2].isEnabled = false
+            navigationItem.rightBarButtonItems?[2].tintColor = .clear
+        }
+        
     }
 }
 
