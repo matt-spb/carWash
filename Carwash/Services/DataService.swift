@@ -120,4 +120,9 @@ class DataService {
     func addCar(car: Car, toBox box: Int) {
         boxes[box].addCar(car: car)
     }
+    
+    //MARK: Editing text of comment
+    func editComment(at index: Int, withText text: String) {
+        comments[index].setText(text)
+    }
 }

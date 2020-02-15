@@ -10,25 +10,25 @@ import UIKit
 
 class CarwashVC: UIViewController {
     
-    @IBOutlet weak var carwashTable: UITableView!
+    var indexOfComment: Int!
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNibs()
-        carwashTable.delegate = self
-        carwashTable.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
         
         let rect = CGRect(x: 0, y: 0, width: view.frame.width, height: 350)
         let headerView = HeaderView(frame: rect)
-        carwashTable.tableHeaderView = headerView
+        tableView.tableHeaderView = headerView
         
-        //navigationItem.backBarButtonItem?.title = "Back"
         navigationItem.hidesBackButton = true
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        carwashTable.reloadData()
+        tableView.reloadData()
     }
 }
 
@@ -37,6 +37,7 @@ extension CarwashVC: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
@@ -48,6 +49,7 @@ extension CarwashVC: UITableViewDataSource, UITableViewDelegate {
             return 0
         }
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
@@ -66,6 +68,7 @@ extension CarwashVC: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -76,6 +79,7 @@ extension CarwashVC: UITableViewDataSource, UITableViewDelegate {
             return ""
         }
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
@@ -96,19 +100,47 @@ extension CarwashVC: UITableViewDataSource, UITableViewDelegate {
             carDetailVC.boxNumber = indexPath.row
             
             navigationController?.pushViewController(carDetailVC, animated: true)
+        case 1:
+            indexOfComment = indexPath.row
+            let comment = DataService.shared.getComments()[indexPath.row]
+            let editComentVC = EditComentVC(comment: comment)
+            editComentVC.delegate = self
+            present(editComentVC, animated: true, completion: nil)
             
-        default: break
+        default:
+            break
         }
-        carwashTable.deselectRow(at: indexPath, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
 
 extension CarwashVC {
     func setupNibs() {
         let nib1 = UINib(nibName: "BoxCell", bundle: nil)
-        carwashTable.register(nib1, forCellReuseIdentifier: "BoxCell")
+        tableView.register(nib1, forCellReuseIdentifier: "BoxCell")
         
         let nib2 = UINib(nibName: "CommentCell", bundle: nil)
-        carwashTable.register(nib2, forCellReuseIdentifier: "CommentCell")
+        tableView.register(nib2, forCellReuseIdentifier: "CommentCell")
+    }
+}
+
+
+extension CarwashVC: EditComentDelegate {
+    func editViewControllerDidShow() {
+        //print("Show edit controller")
+    }
+    
+    func editViewControllerDidDisapear() {
+        //print("hide edit controller")
+    }
+    
+    func editViewControllerDidSave(comment: Comment) {
+        //print("edit VC called")
+        print(comment.text)
+        DataService.shared.editComment(at: indexOfComment, withText: comment.text)
+        
+        tableView.reloadData()
     }
 }

@@ -10,5 +10,9 @@ import Foundation
 
 struct Comment {
     private(set) var name: String
-    private(set) var text: String
+    public var text: String
+    
+    mutating func setText(_ text: String) {
+        self.text = text
+    }
 }

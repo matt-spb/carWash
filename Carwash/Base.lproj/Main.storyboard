@@ -33,7 +33,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="ZzX-Fm-OjD"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="carwashTable" destination="qQ6-B7-a31" id="wwj-AX-Fgj"/>
+                        <outlet property="tableView" destination="qQ6-B7-a31" id="wwj-AX-Fgj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -66,7 +66,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="carDataTable" destination="Zh1-qO-teJ" id="WkY-cP-fS4"/>
+                        <outlet property="tableView" destination="Zh1-qO-teJ" id="WkY-cP-fS4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bni-Lw-gvs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
