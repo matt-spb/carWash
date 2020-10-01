@@ -107,6 +107,7 @@ extension CarDetailVC: UITableViewDelegate, UITableViewDataSource {
         
         let car = DataService.shared.getBoxes()[boxNumber!].cars[indexPath.row]
         cell.updateCell(car: car)
+        //cell.selectedBackgroundView = UIView()
         return cell
     }
     

@@ -12,6 +12,8 @@ class DataService {
     static let shared = DataService()
     lazy private var boxes = generateBoxes()
     lazy private var comments = generateComments()
+    
+    private init() {}
 
     //MARK: Generating Cars
     // база брендов
